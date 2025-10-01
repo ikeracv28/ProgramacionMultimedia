@@ -13,7 +13,8 @@ public class Juego {
 
             while (palitos > 1 && !partidaTerminada) {
                 System.out.println("\nTurno del jugador " + turno);
-                for (int i = 0; i < palitos; i++) System.out.println("|");
+                for (int i = 0; i < palitos; i++)
+                {System.out.print("|");}
                 System.out.println("\nQuedan " + palitos + " palitos.");
                 System.out.print("¿Cuántos palitos quieres quitar (1-4)? (R para reiniciar, M para ir al menú): ");
                 String entrada = scanner.nextLine().toUpperCase();
