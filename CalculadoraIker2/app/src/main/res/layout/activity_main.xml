@@ -12,13 +12,13 @@
     <TextView
         android:id="@+id/respuesta"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="83dp"
         android:layout_weight="2"
+        android:gravity="bottom"
+        android:padding="24dp"
         android:text="0"
         android:textAlignment="textEnd"
-        android:padding="24dp"
-        android:gravity="bottom"
-        android:textSize="48sp" />
+        android:textSize="40sp" />
 
     <EditText
         android:id="@+id/numero1"
@@ -43,26 +43,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Suma" />
+        android:backgroundTint="#4AC37A"
+        android:text="Suma"
+        android:textColorLink="#00BCD4" />
 
     <Button
         android:id="@+id/btn_resta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Resta" />
+        android:backgroundTint="#4AC37A"
+        android:text="Resta"
+        android:textColorLink="#00BCD4" />
 
     <Button
         android:id="@+id/btn_multiplicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Multiplicacion" />
+        android:backgroundTint="#4AC37A"
+        android:text="Multiplicacion"
+        android:textColorLink="#00BCD4" />
 
     <Button
         android:id="@+id/btn_division"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Division" />
+        android:backgroundTint="#4AC37A"
+        android:text="Division"
+        android:textColorLink="#00BCD4" />
 </LinearLayout>
