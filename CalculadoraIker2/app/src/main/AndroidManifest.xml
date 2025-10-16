@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalculadoraIker">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" >
+
+
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -19,6 +25,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
