@@ -13,8 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentActivity;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends FragmentActivity implements ToolbarFragment.ToolbarListener {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -28,16 +29,71 @@ public class MainActivity2 extends AppCompatActivity {
             return insets;
         });
 
+        ConstraintLayout m = findViewById(R.id.main);
+
+    }
+
+    @Override
+    public void onButtonClick(int size, String text) {
+        TextFragment textFragment = (TextFragment) getSupportFragmentManager().findFragmentById(R.id.TextFContainer);
+
+        if(textFragment != null){
+
+            textFragment.ChangeTextProperties(size, text);
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       /*
         Button b = findViewById(R.id.button2);
         TextView t3 = findViewById(R.id.textView6);
         ConstraintLayout m = findViewById(R.id.main);
         TextView t1 = findViewById(R.id.textView4);
         TextView t2 = findViewById(R.id.textView5);
 
-                b.setOnClickListener(new View.OnClickListener() {
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               t3.setText("On click");
+                t3.setText("On click");
             }
         });
 
@@ -49,17 +105,23 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+
         m.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                HandleTouchEvent(v, event);
+                //HandleTouchEvent(v, event);
 
                 return true;
             }
         });
 
 
-        }
+    }
+}
+*/
+
+
+        /*
     public void HandleTouchEvent(View v, MotionEvent me)
     {
         TextView t1 = findViewById(R.id.textView4);
@@ -115,8 +177,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         }
 
+    }
 
     }
 
-
-    }
+*/
