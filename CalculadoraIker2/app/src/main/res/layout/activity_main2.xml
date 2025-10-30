@@ -48,6 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/ToolBarFContainer"
-        tools:layout="@layout/fragment_text" />
+        tools:layout="@layout/fragment_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

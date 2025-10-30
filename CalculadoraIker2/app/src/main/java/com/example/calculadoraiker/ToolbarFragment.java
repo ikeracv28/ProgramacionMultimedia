@@ -16,16 +16,15 @@ import android.widget.SeekBar;
 
 public class ToolbarFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
-    private int seekvalue;
+    private int seek_value_ = 0;
 
     private EditText editText;
 
+    public ToolbarFragment(){}
 
-    public interface ToolbarListener{
-        public void onButtonClick(int size , String text);
-    }
 
-    ToolbarListener activityCallback;
+
+
 
 
     @Override
@@ -36,13 +35,15 @@ public class ToolbarFragment extends Fragment implements SeekBar.OnSeekBarChange
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_toolbar, container, false);
 
-        editText = v.findViewById(R.id.FragmentEditText);
+        //editText = v.findViewById(R.id.FragmentEditText);
 
         SeekBar seekBar = v.findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(this);
+
+        //seekBar.setOnSeekBarChangeListener(this);
+
 
         Button button = v.findViewById(R.id.FragmentButton);
-
-        seekBar.setOnSeekBarChangeListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,28 +56,15 @@ public class ToolbarFragment extends Fragment implements SeekBar.OnSeekBarChange
 
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-
-        try{
-            activityCallback = (ToolbarListener) context;
-        }catch(ClassCastException e){
-            throw new ClassCastException(context.toString() + ", oye, debes implementar ToolbarListener, que la estas liando");
-        }
-
-    }
-
     public void ButtonClicked(View v)
     {
-        activityCallback.onButtonClick(seekvalue, editText.getText().toString());
+        activityCallback.onButtonClick(seek_value_);//editText.getText().toString());
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-        seekvalue = progress;
+        seek_value_ = i;
     }
 
     @Override
@@ -88,4 +76,25 @@ public class ToolbarFragment extends Fragment implements SeekBar.OnSeekBarChange
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
+
+    public interface ToolbarListener{
+        public void onButtonClick(int value);
+    }
+
+    ToolbarListener activityCallback;
+
+    @Override
+    public void onAttach(@NonNull @org.jetbrains.annotations.NotNull  Context context) {
+        super.onAttach(context);
+
+
+        try{
+            activityCallback = (ToolbarListener) context;
+        }catch(ClassCastException e){
+            throw new ClassCastException(context.toString() + ", oye, debes implementar ToolbarListener, que la estas liando");
+        }
+
+    }
+
+
 }
