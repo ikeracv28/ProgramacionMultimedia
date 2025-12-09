@@ -24,10 +24,18 @@ public class BirdController : MonoBehaviour
 
     private TMP_Text textNumberScorePanel;
 
-
-
-
     public float PipeSpeed;
+
+    private bool pausePanelInterruptor = true;
+
+    private bool estaVivo = true;
+
+    public AudioSource sFXGameOver;
+
+    public AudioSource tapSound;
+
+    public AudioSource sFXAmbientSound;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +49,11 @@ public class BirdController : MonoBehaviour
 
         textNumberScorePanel = pauseMenuGO.transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
 
+        //sFXGameOver = GetComponent<AudioSource>();
 
+        //tapSound = GetComponent<AudioSource>();
+
+        sFXAmbientSound.Play();
 
     }
 
@@ -57,15 +69,37 @@ public class BirdController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            tapSound.Play();
+
             rb.linearVelocity = Vector3.zero;
 
             //Darle una fuerza, direccion Up
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-         
+            
 
             //Debug.Log("Hola soy el Update");
         }
+
+        // para pausar el juego dando al escape
+        if (Input.GetKeyDown(KeyCode.Escape) == true && pausePanelInterruptor == false)
+        {
+
+            PausaMenu(false);
+            pausePanelInterruptor = true;
+
+
+        }
+
+        // para pausar el juego
+        else if (Input.GetKeyDown(KeyCode.Escape) == true && pausePanelInterruptor == true)
+        {
+            
+            PausaMenu(true);
+            pausePanelInterruptor=false;
+
+        }
+       
 
     }
 
@@ -74,10 +108,10 @@ public class BirdController : MonoBehaviour
         // esto es para que si detecta que choque contra lo que le pongamos el tag pipe
         if(collision.gameObject.tag == "Pipe")
         {
-            // se Pause el juego
-            Time.timeScale = 0.0F;
-            PausaMenu();
-            MostrarTexto();
+            // se Pause el juego cuando mueres
+            Death();
+            //this.enabled = false;
+
         }
 
         Debug.Log("He chocado con: " + collision.gameObject.tag);
@@ -91,16 +125,42 @@ public class BirdController : MonoBehaviour
         textNumberScorePanel.text = score.ToString();
     }
 
-    public void PausaMenu()
+    // este va a ser sobre todo paraa cuando le demos al escape para pararlos
+    public void PausaMenu(bool active)
     {
-        pauseMenuGO.SetActive(true);
+        if(active == true)
+        {
+            // se Pause el juego
+            Time.timeScale = 0.0F;
+            pauseMenuGO.SetActive(true);
+            scoreInGameText.SetActive(false);
+        }
+        else if(active == false && estaVivo == true)
+        {
+            // se Pause el juego
+            Time.timeScale = 1.0F;
+            pauseMenuGO.SetActive(false);
+            scoreInGameText.SetActive(true);
+        }
     }
 
-    public void MostrarTexto()
+    // aquui es para cuando chocamos, y hemos muerto en el juego
+    public void Death()
     {
+        // para controlar que si es porque ha muerto no pueda darle al escape y continuar el juego
+        estaVivo = false;
+
+        // se Pause el juego
+        Time.timeScale = 0.0F;
+        pauseMenuGO.SetActive(true);
         scoreInGameText.SetActive(false);
-        
+        sFXGameOver.Play();
+        sFXAmbientSound.Stop();
     }
+
+
+
+   
 
     public void Restart()
     {
