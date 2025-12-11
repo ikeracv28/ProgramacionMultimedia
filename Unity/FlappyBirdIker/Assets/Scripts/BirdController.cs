@@ -123,6 +123,8 @@ public class BirdController : MonoBehaviour
         score++;
         textScore.text = score.ToString();
         textNumberScorePanel.text = score.ToString();
+        DataSaver dataSaver = new DataSaver();
+        dataSaver.Load();
     }
 
     // este va a ser sobre todo paraa cuando le demos al escape para pararlos
