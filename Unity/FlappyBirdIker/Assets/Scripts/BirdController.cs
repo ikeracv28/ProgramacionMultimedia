@@ -125,6 +125,11 @@ public class BirdController : MonoBehaviour
         textNumberScorePanel.text = score.ToString();
         DataSaver dataSaver = new DataSaver();
         dataSaver.Load();
+
+        if(score % 5 == 0)
+        {
+            PipeSpeed += 1.0f;
+        }
     }
 
     // este va a ser sobre todo paraa cuando le demos al escape para pararlos
@@ -166,7 +171,7 @@ public class BirdController : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1.0F;
     }
 }
